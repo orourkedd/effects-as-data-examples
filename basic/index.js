@@ -1,4 +1,5 @@
 const { call, buildFunctions } = require('effects-as-data')
+const { testFn, testFnV2, args } = require('effects-as-data/test')
 const fetch = require('isomorphic-fetch')
 
 function httpGetCommand(url) {
@@ -17,6 +18,36 @@ function* getPeople() {
   const names = results.map(p => p.name)
   return names
 }
+
+// Semantic test style
+testFn(getPeople, () => {
+  const apiResults = { results: [{ name: 'Luke Skywalker' }] }
+  // prettier-ignore
+  return args()
+    .yieldCmd(httpGetCommand('https://swapi.co/api/people')).yieldReturns(apiResults)
+    .returns(['Luke Skywalker'])
+})()
+
+// Data only test v2
+testFnV2(getPeople, () => {
+  const apiResults = { results: [{ name: 'Luke Skywalker' }] }
+  // prettier-ignore
+  return [
+    [],
+    [httpGetCommand('https://swapi.co/api/people'), apiResults],
+    ['Luke Skywalker']
+  ]
+})()
+
+// Data only test v1
+testFn(getPeople, () => {
+  const apiResults = { results: [{ name: 'Luke Skywalker' }] }
+  // prettier-ignore
+  return [
+    [[], httpGetCommand('https://swapi.co/api/people')],
+    [apiResults, ['Luke Skywalker']]
+  ]
+})()
 
 const config = {
   onCommandComplete: telemetry => {
