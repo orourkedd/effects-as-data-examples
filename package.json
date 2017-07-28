@@ -10,7 +10,8 @@
     "test": "jest",
     "basic": "node ./basic",
     "basic-existing-handlers": "node ./basic-existing-handlers",
-    "error-handling": "node ./error-handling"
+    "error-handling": "node ./error-handling",
+    "parallelization": "node ./parallelization"
   },
   "keywords": [],
   "author": "",
