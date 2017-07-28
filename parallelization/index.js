@@ -5,7 +5,7 @@ const getPeople = require('./get-people')
 const functions = buildFunctions({}, handlers, { getPeople })
 
 functions
-  .getPeople()
+  .getPeople(1, 2)
   .then(names => {
     console.log('Function Results:')
     console.log(names.join(', '))
