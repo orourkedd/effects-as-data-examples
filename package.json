@@ -7,8 +7,10 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "test": "",
-    "basic": "node ./basic"
+    "test": "jest",
+    "basic": "node ./basic",
+    "basic-existing-handlers": "node ./basic-existing-handlers",
+    "error-handling": "node ./error-handling"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +18,10 @@
   "dependencies": {
     "effects-as-data": "^2.5.5",
     "effects-as-data-node": "^2.0.2",
-    "effects-as-data-universal": "^2.3.0",
+    "effects-as-data-universal": "^2.4.0",
     "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
   }
 }
