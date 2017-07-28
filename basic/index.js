@@ -2,19 +2,23 @@ const { call, buildFunctions } = require('effects-as-data')
 const { testFn, testFnV2, args } = require('effects-as-data/test')
 const fetch = require('isomorphic-fetch')
 
-function httpGetCommand(url) {
-  return {
-    type: 'httpGet',
-    url
+const cmds = {
+  httpGet(url) {
+    return {
+      type: 'httpGet',
+      url
+    }
   }
 }
 
-function httpGetHandler(cmd) {
-  return fetch(cmd.url).then(r => r.json())
+const handlers = {
+  httpGet(cmd) {
+    return fetch(cmd.url).then(r => r.json())
+  }
 }
 
 function* getPeople() {
-  const { results } = yield httpGetCommand('https://swapi.co/api/people')
+  const { results } = yield cmds.httpGet('https://swapi.co/api/people')
   const names = results.map(p => p.name)
   return names
 }
@@ -24,29 +28,8 @@ testFn(getPeople, () => {
   const apiResults = { results: [{ name: 'Luke Skywalker' }] }
   // prettier-ignore
   return args()
-    .yieldCmd(httpGetCommand('https://swapi.co/api/people')).yieldReturns(apiResults)
+    .yieldCmd(cmds.httpGet('https://swapi.co/api/people')).yieldReturns(apiResults)
     .returns(['Luke Skywalker'])
-})()
-
-// Data only test v2
-testFnV2(getPeople, () => {
-  const apiResults = { results: [{ name: 'Luke Skywalker' }] }
-  // prettier-ignore
-  return [
-    [],
-    [httpGetCommand('https://swapi.co/api/people'), apiResults],
-    ['Luke Skywalker']
-  ]
-})()
-
-// Data only test v1
-testFn(getPeople, () => {
-  const apiResults = { results: [{ name: 'Luke Skywalker' }] }
-  // prettier-ignore
-  return [
-    [[], httpGetCommand('https://swapi.co/api/people')],
-    [apiResults, ['Luke Skywalker']]
-  ]
 })()
 
 const config = {
@@ -55,11 +38,7 @@ const config = {
   }
 }
 
-const functions = buildFunctions(
-  config,
-  { httpGet: httpGetHandler },
-  { getPeople }
-)
+const functions = buildFunctions(config, handlers, { getPeople })
 
 functions
   .getPeople()
