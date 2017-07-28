@@ -1,0 +1,22 @@
+{
+  "name": "effects-as-data-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "",
+    "basic": "node ./basic"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "effects-as-data": "^2.5.5",
+    "effects-as-data-node": "^2.0.2",
+    "effects-as-data-universal": "^2.3.0",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
