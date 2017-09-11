@@ -38,7 +38,6 @@ prompt([
     ]
   }
 ]).then(function({ fn }) {
-  console.log("fn", fn);
   switch (fn) {
     case "getPeople()":
       return fns
