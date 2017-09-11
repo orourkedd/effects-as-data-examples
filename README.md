@@ -11,7 +11,7 @@ There are two projects in this repository:
 
 ## Running the examples
 
-For both projects, run:
+For both projects, `cd` into its folder and run:
 
 ```
 npm install
