@@ -51,3 +51,5 @@ jspm_packages
 
 #Yarn Lock
 yarn.lock
+
+package-lock.json

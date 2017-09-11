@@ -1,10 +1,11 @@
 {
-  "name": "basic",
+  "name": "basic-using-universal",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "start-w-telemetry": "TELEMETRY=1 node index.js",
     "test": "jest"
   },
   "keywords": [],
@@ -12,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "effects-as-data": "^2.12.2",
-    "isomorphic-fetch": "^2.2.1"
+    "effects-as-data-universal": "^4.1.0",
+    "inquirer": "^3.2.3"
   },
   "devDependencies": {
     "jest": "^21.0.2"
