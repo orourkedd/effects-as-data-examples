@@ -1,0 +1,21 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "effects-as-data": "^2.12.2",
+    "effects-as-data-universal": "^4.1.0",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "jest": "^21.0.2"
+  }
+}

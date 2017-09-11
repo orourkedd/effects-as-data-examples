@@ -1,50 +1,20 @@
-const { call, buildFunctions } = require('effects-as-data')
-const { testFn, testFnV2, args } = require('effects-as-data/test')
-const fetch = require('isomorphic-fetch')
-
-const cmds = {
-  httpGet(url) {
-    return {
-      type: 'httpGet',
-      url
-    }
-  }
-}
-
-const handlers = {
-  httpGet(cmd) {
-    return fetch(cmd.url).then(r => r.json())
-  }
-}
-
-function* getPeople() {
-  const { results } = yield cmds.httpGet('https://swapi.co/api/people')
-  const names = results.map(p => p.name)
-  return names
-}
-
-// Semantic test style
-testFn(getPeople, () => {
-  const apiResults = { results: [{ name: 'Luke Skywalker' }] }
-  // prettier-ignore
-  return args()
-    .yieldCmd(cmds.httpGet('https://swapi.co/api/people')).yieldReturns(apiResults)
-    .returns(['Luke Skywalker'])
-})()
+const { buildFunctions } = require("effects-as-data");
+const handlers = require("./handlers");
+const functions = require("./functions");
 
 const config = {
   onCommandComplete: telemetry => {
-    console.log('Telemetry (from onCommandComplete):', telemetry)
+    console.log("Telemetry (from onCommandComplete):", telemetry);
   }
-}
+};
 
-const functions = buildFunctions(config, handlers, { getPeople })
+const fns = buildFunctions(config, handlers, functions);
 
-functions
+fns
   .getPeople()
   .then(names => {
-    console.log('\n')
-    console.log('Function Results:')
-    console.log(names.join(', '))
+    console.log("\n");
+    console.log("Function Results:");
+    console.log(names.join(", "));
   })
-  .catch(console.error)
+  .catch(console.error);
