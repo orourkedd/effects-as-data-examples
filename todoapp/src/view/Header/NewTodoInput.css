@@ -1,0 +1,8 @@
+.new-todo-form {
+  display: flex;
+  flex-grow: 1;
+}
+
+.new-todo {
+  padding-left: 16px;
+}
