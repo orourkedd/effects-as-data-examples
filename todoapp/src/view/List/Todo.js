@@ -5,15 +5,21 @@ export default function Todo({ todo, toggleComplete, deleteTodo }) {
   return (
     <li className={className}>
       <div className="view">
-        <input
-          className="toggle"
-          type="checkbox"
-          checked={todo.complete}
-          onChange={e => toggleComplete(todo)}
-        />
+        <Input todo={todo} toggleComplete={toggleComplete} />
         <label>{todo.content}</label>
         <button className="destroy" onClick={e => deleteTodo(todo)} />
       </div>
     </li>
+  );
+}
+
+function Input({ todo, toggleComplete }) {
+  return (
+    <input
+      className="toggle"
+      type="checkbox"
+      checked={todo.complete}
+      onChange={e => toggleComplete(todo)}
+    />
   );
 }
