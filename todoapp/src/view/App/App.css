@@ -1,0 +1,13 @@
+.demo-notes {
+  text-align: center;
+}
+
+.demo-notes h1 {
+  color: rgba(175, 47, 47, 0.15);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.demo-notes p {
+  font-size: 18px;
+}

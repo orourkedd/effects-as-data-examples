@@ -1,13 +1,18 @@
 # Effects-as-data examples
 
 ## Overview
-There are two projects in this repository:
+There are three projects in this repository:
 
 ```
 .
+├── todoapp - a todo application using effects-as-data.
 ├── basic - an basic effects-as-data project.
 └── misc-examples - various examples of how to do things.
 ```
+
+## Todo App
+
+The readme for `todoapp`: [Open](https://github.com/orourkedd/effects-as-data-examples/tree/master/todoapp)
 
 ## Basic
 

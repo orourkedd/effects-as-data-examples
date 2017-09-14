@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.better-toggle-all {
+  height: 65px;
+  padding-left: 4px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  color: #737373;
+  font-size: 22px;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 0px rgba(0, 0, 0, 0.03);
+}
+
+.better-toggle-all > span {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  opacity: 0.2;
+  cursor: pointer;
+  user-select: none;
+}
+
+.better-toggle-all.selected > span {
+  opacity: 1;
+}
+
+.header form {
+  display: flex;
+  flex-grow: 1;
+}
+
+.new-todo {
+  padding-left: 16px;
+}

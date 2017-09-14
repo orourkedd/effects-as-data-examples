@@ -1,72 +1,72 @@
-const { buildFunctions } = require("effects-as-data");
-const handlers = require("./handlers");
-const functions = require("./functions");
-const inquirer = require("inquirer");
-const prompt = inquirer.createPromptModule();
+const { buildFunctions } = require('effects-as-data')
+const handlers = require('./handlers')
+const functions = require('./functions')
+const inquirer = require('inquirer')
+const prompt = inquirer.createPromptModule()
 
 // Use `npm run start-w-telemetry` to see the output with telemetry
 const config = process.env.TELEMETRY
   ? {
       onCall: telemetry => {
-        console.log("Telemetry (from onCall):", telemetry);
+        console.log('Telemetry (from onCall):', telemetry.config.stack)
       },
       onCallComplete: telemetry => {
-        console.log("Telemetry (from onCallComplete):", telemetry);
+        console.log('Telemetry (from onCallComplete):', telemetry)
       },
       onCommand: telemetry => {
-        console.log("Telemetry (from onCommand):", telemetry);
+        console.log('Telemetry (from onCommand):', telemetry)
       },
       onCommandComplete: telemetry => {
-        console.log("Telemetry (from onCommandComplete):", telemetry);
+        console.log('Telemetry (from onCommandComplete):', telemetry)
       }
     }
-  : {};
+  : {}
 
-const fns = buildFunctions(config, handlers, functions);
+const fns = buildFunctions(config, handlers, functions)
 
 prompt([
   {
-    type: "list",
-    name: "fn",
-    message: "Which example would you like to run?",
+    type: 'list',
+    name: 'fn',
+    message: 'Which example would you like to run?',
     choices: [
-      "getPeople()",
-      "getPeopleInParallel()",
-      "getPeopleReuseFn()",
-      "getPerson()",
-      "getPersonErrorHandling()"
+      'getPeople()',
+      'getPeopleInParallel()',
+      'getPeopleReuseFn()',
+      'getPerson()',
+      'getPersonErrorHandling()'
     ]
   }
 ]).then(function({ fn }) {
   switch (fn) {
-    case "getPeople()":
+    case 'getPeople()':
       return fns
         .getPeople()
-        .then(names => console.log("People:", names))
-        .catch(console.error);
+        .then(names => console.log('People:', names))
+        .catch(console.error)
 
-    case "getPeopleInParallel()":
+    case 'getPeopleInParallel()':
       return fns
         .getPeopleInParallel([1, 2])
-        .then(names => console.log("People:", names))
-        .catch(console.error);
+        .then(names => console.log('People:', names))
+        .catch(console.error)
 
-    case "getPeopleReuseFn()":
+    case 'getPeopleReuseFn()':
       return fns
         .getPeopleReuseFn([1, 2])
-        .then(names => console.log("People:", names))
-        .catch(console.error);
+        .then(names => console.log('People:', names))
+        .catch(console.error)
 
-    case "getPerson()":
+    case 'getPerson()':
       return fns
         .getPerson(1)
-        .then(name => console.log("Person:", name))
-        .catch(console.error);
+        .then(name => console.log('Person:', name))
+        .catch(console.error)
 
-    case "getPersonErrorHandling()":
+    case 'getPersonErrorHandling()':
       return fns
         .getPersonErrorHandling(1000) // 1000 is not a valid id
-        .then(name => console.log("Person:", name))
-        .catch(console.error);
+        .then(name => console.log('Person:', name))
+        .catch(console.error)
   }
-});
+})
