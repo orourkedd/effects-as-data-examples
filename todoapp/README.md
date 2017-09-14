@@ -9,7 +9,7 @@ This application is a simple todo app demonstrating how to use effects-as-data i
 
 ## Live Demo
 
-Open Demo
+[Open Live Demo](http://effects-as-data-todo-app.s3-website-us-west-2.amazonaws.com/)
 
 ## Data flow
 
