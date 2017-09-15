@@ -10,7 +10,6 @@ export function onCommandComplete(t) {
   const cmd = t.command;
   const path = getPathFromStack(t.config.stack);
   // mute this bc its a lot of noise
-  if (path.match(/saveLocal/)) return;
   const pathClean = path.replace(/_callee/g, "anonymous");
   switch (cmd.type) {
     case "reduxDispatch":
