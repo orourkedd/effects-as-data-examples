@@ -1,4 +1,4 @@
-import "./Header.css";
+import "./header.css";
 import React from "react";
 import ToggleButton from "./ToggleButton";
 import NewTodoInput from "./NewTodoInput";
